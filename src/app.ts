@@ -1,4 +1,6 @@
 import express, { Application } from "express";
+import "./config/mongoose.config.js";
+import apiRoutes from "./routes/api.routes.js";
 
 export class App {
   private app: Application;
@@ -17,6 +19,7 @@ export class App {
     this.app.use(express.urlencoded({ extended: true }));
   }
   private routes(): void {
+    this.app.use("/api/0.1.0v/", apiRoutes);
   }
   public listen(): void {
     this.app.listen(this.app.get("port"), () => {
